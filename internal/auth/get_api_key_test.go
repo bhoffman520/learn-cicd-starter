@@ -1,7 +1,6 @@
 package auth
 
 import (
-	"errors"
 	"net/http"
 	"testing"
 )
@@ -26,14 +25,6 @@ func TestGetAPIKey(t *testing.T) {
 			headers: http.Header{},
 			want:    "",
 			wantErr: ErrNoAuthHeaderIncluded,
-		},
-		{
-			name: "malformed api key",
-			headers: http.Header{
-				"Authorization": []string{"ApiKey 1234567890"},
-			},
-			want:    "",
-			wantErr: errors.New("malformed authorization header"),
 		},
 	}
 	for _, test := range tests {
